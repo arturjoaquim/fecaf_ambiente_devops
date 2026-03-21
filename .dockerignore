@@ -1,4 +1,4 @@
-node_modules
+src/node_modules
 npm-debug.log
 Dockerfile
 .dockerignore
@@ -6,3 +6,4 @@ Dockerfile
 .gitignore
 .idea
 LICENSE
+README.md

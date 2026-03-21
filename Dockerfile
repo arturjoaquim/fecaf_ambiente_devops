@@ -3,12 +3,11 @@ LABEL authors="artur"
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY src/package*.json ./
 
 RUN npm install
 
-# Copia o restante dos arquivos do projeto (index.js, swagger.json, etc)
-COPY . .
+COPY src .
 
 EXPOSE 3000
 
