@@ -1,0 +1,33 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hello World API",
+    "version": "1.0.0",
+    "description": "Uma API simples com um endpoint hello world"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Retorna uma mensagem de Hello World",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Hello World"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
