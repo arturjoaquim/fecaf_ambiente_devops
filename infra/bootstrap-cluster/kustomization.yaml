@@ -1,15 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+# Isso força o Kustomize a injetar o namespace "argocd" em todos os recursos 
+# importados e gerados por este arquivo.
+namespace: argocd
+
 resources:
-  # 1️⃣ cria namespace primeiro
-  - namespaces.yaml
+  # 1 Configura as secrets de acesso aos repositórios no argocd
+  - argocd-add-repos-secrets.yaml
 
-  # 2️⃣ instala ArgoCD (CRDs + controllers)
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.9.0/manifests/install.yaml
-
-  # 3️⃣ Configura as secrets de acesso aos repositórios no argocd
-  - argocd-repo-secrets.yaml
-
-  # 4️⃣ cria app-of-apps
-  - argocd-app-sync.yaml
+  # 2 Cria o sync com os repos no argo cd
+  - argocd-add-apps.yaml
