@@ -4,7 +4,7 @@ namePrefix: prod-
 images:
 - name: ghcr.io/arturjoaquim/fecaf_ambiente_devops
   newName: ghcr.io/arturjoaquim/fecaf_ambiente_devops
-  newTag: af989b7
+  newTag: 7bf8334
 patches:
 - patch: |-
     - op: replace
