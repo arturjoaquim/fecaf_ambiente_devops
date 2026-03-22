@@ -2,6 +2,10 @@
 
 ## Aplicação
 
+````Bash
+kubectl port-forward svc/prod-api-express-service -n default 4200:80
+````
+
 ## Continuos Integration
 
 ## Cluster Kubernets
