@@ -1,0 +1,17 @@
+resources:
+  - ../../base
+
+namePrefix: staging-
+
+images:
+  - name: ghcr.io/arturjoaquim/fecaf_ambiente_devops
+    newTag: staging
+
+patches:
+  - target:
+      kind: Deployment
+      name: api-express-deployment
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1

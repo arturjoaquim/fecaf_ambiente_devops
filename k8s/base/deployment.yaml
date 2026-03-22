@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-express-deployment
+  labels:
+    app: api-express
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-express
+  template:
+    metadata:
+      labels:
+        app: api-express
+    spec:
+      containers:
+      - name: api-express
+        # Imagem base. Pode ser substituída por Kustomize overlays.
+        image: ghcr.io/arturjoaquim/fecaf_ambiente_devops:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000

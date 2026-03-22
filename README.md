@@ -26,7 +26,7 @@ mv kind /usr/local/bin/
    Abra o seu terminal (precisa ter o Docker rodando na máquina) e digite:
 
 ````Bash
-kind create cluster --name nexadesk-lab
+kind create cluster --name nexadesk-lab --config ./infra/kind-config.yaml 
 ````
 
 O Kind vai baixar a imagem do "nó" do Kubernetes e iniciar o seu cluster local.
