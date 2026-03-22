@@ -5,9 +5,6 @@ images:
 - name: ghcr.io/arturjoaquim/fecaf_ambiente_devops
   newName: ghcr.io/arturjoaquim/fecaf_ambiente_devops
   newTag: c02d443
-- name: 'ghcr.io/arturjoaquim/fecaf_ambiente_devops:'
-  newName: ghcr.io/arturjoaquim/fecaf_ambiente_devops
-  newTag: df55433
 patches:
 - patch: |-
     - op: replace
