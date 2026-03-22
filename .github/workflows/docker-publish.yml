@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # Necessário para commitar a nova tag no repositório
+      pull-requests: write # Permissão necessária para o gh pr create funcionar
       packages: write
       id-token: write
 
@@ -99,18 +100,25 @@ jobs:
           IMAGE_LOWER=$(echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
           kustomize edit set image "ghcr.io/arturjoaquim/fecaf_ambiente_devops:=${IMAGE_LOWER}:${{ steps.vars.outputs.sha_short }}"
 
-      - name: Commitar alterações do Kustomize
+      - name: Commitar e criar PR de Kustomize
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
           # Verifica se tem alguma alteração para commitar
           if [ -n "$(git status --porcelain)" ]; then
-            git checkout -b update-ci
-            git add .
+            # Gera um nome de branch único para evitar conflitos se a pipeline rodar várias vezes
+            BRANCH_NAME="update-ci-k8s-${{ github.ref_name }}-${{ steps.vars.outputs.sha_short }}"
+            
+            git checkout -b $BRANCH_NAME
+            git add k8s/
             git commit -m "ci: Atualiza imagem do Kubernetes para a tag ${{ steps.vars.outputs.sha_short }}"
-            git push origin update-ci
-            gh pr create --base main --head update-ci --title "Atualiza imagem" --body "CI atualiza imagem do Kubernetes"
+            git push origin $BRANCH_NAME
+            
+            # Cria o PR para a branch original (main ou staging)
+            gh pr create --base ${{ github.ref_name }} --head $BRANCH_NAME --title "Atualiza tag da imagem no k8s para ${{ steps.vars.outputs.sha_short }} (${{ github.ref_name }})" --body "CI atualiza imagem do Kubernetes para o ambiente de ${{ github.ref_name }}."
           else
             echo "Nenhuma mudança no manifesto para commitar."
           fi
