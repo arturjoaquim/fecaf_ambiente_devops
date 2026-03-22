@@ -111,12 +111,12 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             # Gera um nome de branch único para evitar conflitos se a pipeline rodar várias vezes
             BRANCH_NAME="update-ci-k8s-${{ github.ref_name }}-${{ steps.vars.outputs.sha_short }}"
-            
+          
             git checkout -b $BRANCH_NAME
             git add k8s/
             git commit -m "ci: Atualiza imagem do Kubernetes para a tag ${{ steps.vars.outputs.sha_short }}"
-            git push origin $BRANCH_NAME
-            
+            git push origin $BRANCH_NAME -f
+          
             # Cria o PR para a branch original (main ou staging)
             gh pr create --base ${{ github.ref_name }} --head $BRANCH_NAME --title "Atualiza tag da imagem no k8s para ${{ steps.vars.outputs.sha_short }} (${{ github.ref_name }})" --body "CI atualiza imagem do Kubernetes para o ambiente de ${{ github.ref_name }}."
           else
