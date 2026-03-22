@@ -6,7 +6,7 @@ images:
   newTag: main
 - name: 'ghcr.io/arturjoaquim/fecaf_ambiente_devops:'
   newName: ghcr.io/arturjoaquim/fecaf_ambiente_devops
-  newTag: e8dddd8
+  newTag: df55433
 patches:
 - patch: |-
     - op: replace
