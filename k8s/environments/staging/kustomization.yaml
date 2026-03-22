@@ -4,7 +4,7 @@ namePrefix: staging-
 images:
 - name: ghcr.io/arturjoaquim/fecaf_ambiente_devops
   newName: ghcr.io/arturjoaquim/fecaf_ambiente_devops
-  newTag: 3eaf295
+  newTag: 63df671
 patches:
 - patch: |-
     - op: replace
