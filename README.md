@@ -116,4 +116,11 @@ Pronto! Agora é só abrir o seu navegador, acessar https://localhost:8080 (igno
 ---
 
 ## Observabilidade
-*(Em construção)*
+
+Em nossa stack técnica, utilizamos o próprio **Argo CD** como a primeira camada fundamental de observabilidade e saúde do deploy. 
+
+Através da interface interativa do Argo CD, conseguimos monitorar em tempo real:
+- **Status da Aplicação:** Visão clara sobre a integridade da aplicação (`Healthy` / `Degraded`), permitindo identificar se os Pods estão de pé e respondendo corretamente.
+- **Sincronização:** Indicativo de paridade entre o estado desejado (declarado no GitHub) e o estado real atual dentro do cluster (`Synced` / `Out of Sync`).
+- **Rastreabilidade da Imagem:** É possível inspecionar visualmente os manifestos gerados para descobrir com exatidão **qual versão/tag da imagem Docker** está sendo executada atualmente em produção nos Pods.
+- **Árvore de Recursos Kubernetes:** Um mapa visual da topologia de todos os componentes que formam nossa API (Deployments, ReplicaSets, Pods, Services), facilitando o troubleshooting e possibilitando acesso fácil aos logs dos containers.
