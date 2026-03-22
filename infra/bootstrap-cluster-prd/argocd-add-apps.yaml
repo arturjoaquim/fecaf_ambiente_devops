@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/arturjoaquim/fecaf_ambiente_devops
     targetRevision: main
-    path: k8s
+    path: k8s/environments/prod
   syncPolicy:
     automated:
       prune: true
