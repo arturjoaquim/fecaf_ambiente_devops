@@ -106,9 +106,11 @@ jobs:
           
           # Verifica se tem alguma alteração para commitar
           if [ -n "$(git status --porcelain)" ]; then
+            git checkout -b update-ci
             git add .
             git commit -m "ci: Atualiza imagem do Kubernetes para a tag ${{ steps.vars.outputs.sha_short }}"
-            git push origin HEAD:${{ github.ref_name }}
+            git push origin update-ci
+            gh pr create --base main --head update-ci --title "Atualiza imagem" --body "CI atualiza imagem do Kubernetes"
           else
             echo "Nenhuma mudança no manifesto para commitar."
           fi
