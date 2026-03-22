@@ -114,7 +114,7 @@ jobs:
           
             git checkout -b $BRANCH_NAME
             git add k8s/
-            git commit -m "ci: Atualiza imagem do Kubernetes para a tag ${{ steps.vars.outputs.sha_short }}"
+            git commit -m "ci: Atualiza imagem do Kubernetes para a tag ${{ steps.vars.outputs.sha_short }} [skip ci]"
             git push origin $BRANCH_NAME -f
           
             # Cria o PR para a branch original (main ou staging)
