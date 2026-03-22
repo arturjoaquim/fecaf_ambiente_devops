@@ -4,11 +4,12 @@ metadata:
   name: api-app
   namespace: argocd
 spec:
+  project: default
   destination:
     server: https://kubernetes.default.svc
     namespace: default
   source:
-    repoURL: https://github.com/arturjoaquim/
+    repoURL: https://github.com/arturjoaquim/fecaf_ambiente_devops
     targetRevision: main
     path: k8s
   syncPolicy:

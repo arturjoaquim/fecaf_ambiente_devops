@@ -3,13 +3,13 @@ kind: Kustomization
 
 resources:
   # 1️⃣ cria namespace primeiro
-  - namespace.yaml
+  - namespaces.yaml
 
   # 2️⃣ instala ArgoCD (CRDs + controllers)
-  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.9.0/manifests/install.yaml
 
   # 3️⃣ Configura as secrets de acesso aos repositórios no argocd
   - argocd-repo-secrets.yaml
 
   # 4️⃣ cria app-of-apps
-  - app-of-apps.yaml
+  - argocd-app-sync.yaml
