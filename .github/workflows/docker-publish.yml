@@ -100,7 +100,7 @@ jobs:
           # Atualiza a tag da imagem no kustomization.yaml correspondente usando o kustomize
           # É necessário repassar a imagem em letras minúsculas caso o repositório tenha maiúsculas
           IMAGE_LOWER=$(echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
-          kustomize edit set image "ghcr.io/arturjoaquim/fecaf_ambiente_devops:=${IMAGE_LOWER}:${{ steps.vars.outputs.sha_short }}"
+          kustomize edit set image "ghcr.io/arturjoaquim/fecaf_ambiente_devops=${IMAGE_LOWER}:${{ steps.vars.outputs.sha_short }}"
 
       - name: Commitar e criar PR de Kustomize
         env:
